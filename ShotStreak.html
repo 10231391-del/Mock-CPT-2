@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- This code was provided as starter code by my teacher. -->
+<html>
+  
+<head>
+   <!--The head section contains general information about the webpage.-->
+   <title> ShotStreak    </title>
+   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"> </script>
+   <style>
+       /*The style section controls how pieces of your webpage look.*/
+   </style>
+</head>
+
+
+<body>
+   <!--The body section contains the content of your webpage.-->
+   <header>
+       <h2>  ShotStreak  </h2>
+       <label> Enter Number 1-10</label>
+   </header>
+   <main x-data="webApp">
+    <input type="text" x-model="textVal" placeholder="...">
+    <button @click="simulateGame()">Simulate Game!</button>
+   
+
+   </main>
+  
+   <footer>
+       <p>© 2026-2027<br>
+       AP Computer Science Principles</p>
+   </footer>
+  
+   <script>
+       //The script section contains the JavaScript logic
+       document.addEventListener('alpine:init', () => {
+           Alpine.data('webApp', () => ({
+               textVal: '',
+               gameLog: [],
+               shotOutcomes: [
+                'Made a 3pt',
+                'Airball',
+                'Made a midrange',
+                'Made a layup',
+                'Got blocked',
+                'Made an assist',
+                'Made a successful dunk'
+               ],
+               simulateGame(shotsToTake){
+                this.gameLog;
+                this.shotsToTake = Number(this.textVal)
+                for (let i = 0; i < shotsToTake; i++ ){
+                  Math.floor(Math.random * this.shotOutcomes.length)
+                  let chosenShot = this.shotOutcomes[randomIndex];
+                  if (chosenShot.includes("Made")){
+                    this.gameLog.push(`Shot ${i + 1}: ${chosenShot} - Basket!`)
+                  }
+                  else{
+                    this.gameLog.push(`Shot ${i + 1}: ${chosenShot} - No Good!`)
+                  }
+
+
+
+                }
+
+
+               }
+
+        
+
+
+
+
+
+           }));
+       });
+   </script>
+</body>
+</html>
