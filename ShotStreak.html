@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- This code was provided as starter code by my teacher. -->
 <html>
-  
+ 
 <head>
    <!--The head section contains general information about the webpage.-->
    <title> ShotStreak    </title>
@@ -20,22 +20,31 @@
    </header>
    <main x-data="webApp">
     <input type="text" x-model="textVal" placeholder="...">
-    <button @click="simulateGame()">Simulate Game!</button>
-   
+    <button @click="simulateGame(textVal)">Simulate Game!</button>
+    <!--The code below is provided by Gemini.-->
+    <div x-show="gameLog.length > 0">
+    <ul>
+        <template x-for="(item, index) in gameLog" :key="index">
+            <li x-text="item"></li>
+        </template>
+    </ul>
+</div>
+    
 
    </main>
-  
+ 
    <footer>
        <p>© 2026-2027<br>
        AP Computer Science Principles</p>
    </footer>
-  
+ 
    <script>
        //The script section contains the JavaScript logic
        document.addEventListener('alpine:init', () => {
            Alpine.data('webApp', () => ({
                textVal: '',
                gameLog: [],
+               //Possible shhot outcomes list
                shotOutcomes: [
                 'Made a 3pt',
                 'Airball',
@@ -46,16 +55,15 @@
                 'Made a successful dunk'
                ],
                simulateGame(shotsToTake){
-                this.gameLog;
-                this.shotsToTake = Number(this.textVal)
+                this.gameLog = [];
                 for (let i = 0; i < shotsToTake; i++ ){
-                  Math.floor(Math.random * this.shotOutcomes.length)
+                  let randomIndex = Math.floor(Math.random() * this.shotOutcomes.length);
                   let chosenShot = this.shotOutcomes[randomIndex];
                   if (chosenShot.includes("Made")){
-                    this.gameLog.push(`Shot ${i + 1}: ${chosenShot} - Basket!`)
+                    this.gameLog.push(`Shot ${i + 1}: ${chosenShot} - Basket!`);
                   }
                   else{
-                    this.gameLog.push(`Shot ${i + 1}: ${chosenShot} - No Good!`)
+                    this.gameLog.push(`Shot ${i + 1}: ${chosenShot} - No Good!`);
                   }
 
 
@@ -76,3 +84,5 @@
    </script>
 </body>
 </html>
+<!--Attribution: 
+Used Gemini for assitance-->
